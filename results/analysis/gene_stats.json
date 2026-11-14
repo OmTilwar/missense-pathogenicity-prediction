@@ -1,0 +1,9 @@
+{
+ "n_genes": 15264,
+ "median_variants_per_gene": 5.0,
+ "genes_with_1_variant": 2585,
+ "share_variants_in_top_100_genes": 0.20179689627007896,
+ "genes_all_benign": 11726,
+ "genes_all_pathogenic": 209,
+ "variants_in_single_class_genes": 0.3527658837215058
+}

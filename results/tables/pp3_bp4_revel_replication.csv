@@ -1,0 +1,9 @@
+criterion,strength,published,ours
+PP3,Supporting,0.644,0.732
+PP3,Moderate,0.773,0.854
+PP3,Strong,0.932,0.982
+PP3,Very strong,,0.999
+BP4,Supporting,0.29,0.406
+BP4,Moderate,0.183,0.271
+BP4,Strong,0.016,0.081
+BP4,Very strong,,

@@ -1,0 +1,113 @@
+random split done
+gene-disjoint CV done
+temporal done
+ablation done
+     scenario        method      n  auroc  auroc_lo  auroc_hi  auprc  brier   ece
+       random          B_LR  40403  0.981     0.980     0.982  0.956  0.047 0.014
+       random         C_XGB  40403  0.990     0.989     0.991  0.978  0.034 0.017
+       random     D_XGB_ESM  40403  0.992     0.991     0.993  0.982  0.030 0.015
+       random      ESM2_LLR  37622  0.905     0.901     0.908  0.849    NaN   NaN
+       random AlphaMissense  39755  0.961     0.960     0.963  0.919    NaN   NaN
+       random         REVEL  39361  0.971     0.969     0.972  0.942    NaN   NaN
+       random          CADD  40374  0.928     0.925     0.930  0.822    NaN   NaN
+       random         ESM1b  38157  0.933     0.930     0.936  0.873    NaN   NaN
+       random     PrimateAI  39072  0.886     0.883     0.889  0.732    NaN   NaN
+       random     ClinPred*  40069  0.984     0.982     0.985  0.961    NaN   NaN
+       random      MetaRNN*  40351  0.987     0.986     0.988  0.972    NaN   NaN
+       random       VARITY*  37232  0.968     0.967     0.970  0.934    NaN   NaN
+gene_disjoint          B_LR 202015  0.980     0.980     0.981  0.954  0.047 0.003
+gene_disjoint         C_XGB 202015  0.985     0.985     0.985  0.965  0.040 0.004
+gene_disjoint     D_XGB_ESM 202015  0.988     0.987     0.988  0.973  0.035 0.004
+gene_disjoint      ESM2_LLR 187949  0.906     0.904     0.907  0.852    NaN   NaN
+gene_disjoint AlphaMissense 198738  0.962     0.961     0.963  0.921    NaN   NaN
+gene_disjoint         REVEL 196688  0.972     0.971     0.972  0.944    NaN   NaN
+gene_disjoint          CADD 201829  0.929     0.927     0.930  0.824    NaN   NaN
+gene_disjoint         ESM1b 190405  0.933     0.932     0.934  0.872    NaN   NaN
+gene_disjoint     PrimateAI 195010  0.887     0.885     0.888  0.739    NaN   NaN
+gene_disjoint     ClinPred* 200137  0.983     0.983     0.984  0.961    NaN   NaN
+gene_disjoint      MetaRNN* 201716  0.987     0.987     0.988  0.972    NaN   NaN
+gene_disjoint       VARITY* 185818  0.969     0.968     0.970  0.935    NaN   NaN
+     temporal          B_LR 124139  0.974     0.973     0.975  0.929  0.087 0.124
+     temporal         C_XGB 124139  0.984     0.983     0.985  0.960  0.065 0.105
+     temporal     D_XGB_ESM 124139  0.987     0.986     0.987  0.967  0.052 0.084
+     temporal      ESM2_LLR 115290  0.916     0.914     0.919  0.841    NaN   NaN
+     temporal AlphaMissense 122318  0.966     0.965     0.967  0.904    NaN   NaN
+     temporal         REVEL 120517  0.975     0.974     0.976  0.936    NaN   NaN
+     temporal          CADD 124027  0.939     0.938     0.940  0.799    NaN   NaN
+     temporal         ESM1b 117133  0.940     0.939     0.942  0.855    NaN   NaN
+     temporal     PrimateAI 119617  0.890     0.888     0.892  0.673    NaN   NaN
+     temporal     ClinPred* 122792  0.980     0.980     0.981  0.941    NaN   NaN
+     temporal      MetaRNN* 123960  0.985     0.984     0.985  0.957    NaN   NaN
+     temporal       VARITY* 114461  0.974     0.973     0.975  0.928    NaN   NaN
+        subset        method      n  auroc  auprc
+     new_genes          B_LR  26268  0.969  0.695
+     new_genes         C_XGB  26268  0.968  0.774
+     new_genes     D_XGB_ESM  26268  0.973  0.813
+     new_genes      ESM2_LLR  24304  0.917  0.474
+     new_genes AlphaMissense  26018  0.986  0.759
+     new_genes         REVEL  24662  0.979  0.646
+     new_genes          CADD  26219  0.989  0.599
+     new_genes         ESM1b  24988  0.942  0.556
+     new_genes     PrimateAI  24369  0.965  0.343
+     new_genes     ClinPred*  25544  0.994  0.863
+     new_genes      MetaRNN*  26208  0.986  0.865
+     new_genes       VARITY*  24313  0.987  0.656
+          rare          B_LR  71570  0.961  0.940
+          rare         C_XGB  71570  0.979  0.969
+          rare     D_XGB_ESM  71570  0.983  0.975
+          rare      ESM2_LLR  67037  0.922  0.907
+          rare AlphaMissense  70298  0.963  0.939
+          rare         REVEL  69858  0.973  0.961
+          rare          CADD  71521  0.940  0.886
+          rare         ESM1b  67342  0.943  0.914
+          rare     PrimateAI  69166  0.885  0.787
+          rare     ClinPred*  71036  0.973  0.955
+          rare      MetaRNN*  71466  0.981  0.970
+          rare       VARITY*  65884  0.973  0.959
+rare_new_genes          B_LR  10889  0.976  0.757
+rare_new_genes         C_XGB  10889  0.983  0.835
+rare_new_genes     D_XGB_ESM  10889  0.988  0.865
+rare_new_genes      ESM2_LLR  10097  0.928  0.692
+rare_new_genes AlphaMissense  10779  0.990  0.890
+rare_new_genes         REVEL  10306  0.984  0.858
+rare_new_genes          CADD  10873  0.996  0.900
+rare_new_genes         ESM1b  10437  0.958  0.791
+rare_new_genes     PrimateAI  10189  0.970  0.523
+rare_new_genes     ClinPred*  10638  0.997  0.936
+rare_new_genes      MetaRNN*  10866  0.997  0.922
+rare_new_genes       VARITY*  10152  0.993  0.904
+ common_subset          B_LR 102384  0.975  0.934
+ common_subset         C_XGB 102384  0.984  0.961
+ common_subset     D_XGB_ESM 102384  0.987  0.968
+ common_subset      ESM2_LLR 102384  0.914  0.840
+ common_subset AlphaMissense 102384  0.967  0.909
+ common_subset         REVEL 102384  0.977  0.940
+ common_subset          CADD 102384  0.940  0.805
+ common_subset         ESM1b 102384  0.943  0.866
+ common_subset     PrimateAI 102384  0.887  0.675
+ common_subset     ClinPred* 102384  0.981  0.943
+ common_subset      MetaRNN* 102384  0.985  0.959
+ common_subset       VARITY* 102384  0.974  0.931
+       method  circular  auroc_known_2023  auroc_new_after_2023   drop
+    ClinPred*      True             0.987                 0.980  0.006
+     MetaRNN*      True             0.989                 0.985  0.005
+        REVEL     False             0.958                 0.975 -0.017
+AlphaMissense     False             0.948                 0.966 -0.018
+      VARITY*      True             0.953                 0.974 -0.020
+    PrimateAI     False             0.866                 0.890 -0.024
+        ESM1b     False             0.911                 0.940 -0.030
+     ESM2_LLR     False             0.877                 0.916 -0.039
+         CADD     False             0.898                 0.939 -0.041
+mode           group  auroc  auroc_lo  auroc_hi  auprc  brier  auroc_rare  delta_auroc_vs_full
+drop      population  0.980     0.979     0.980  0.945  0.046       0.980               -0.007
+drop    conservation  0.978     0.977     0.979  0.951  0.085       0.971               -0.008
+drop protein_context  0.985     0.984     0.986  0.962  0.058       0.981               -0.002
+drop       structure  0.986     0.985     0.987  0.965  0.054       0.982               -0.000
+drop   aa_properties  0.986     0.985     0.987  0.967  0.054       0.982               -0.001
+drop            esm2  0.984     0.983     0.984  0.960  0.065       0.979               -0.003
+only      population  0.860     0.858     0.862  0.688  0.295       0.756               -0.126
+only    conservation  0.926     0.925     0.928  0.793  0.099       0.924               -0.061
+only protein_context  0.854     0.852     0.856  0.714  0.143       0.856               -0.133
+only       structure  0.778     0.775     0.781  0.570  0.163       0.781               -0.209
+only   aa_properties  0.768     0.764     0.771  0.534  0.171       0.764               -0.219
+only            esm2  0.946     0.945     0.948  0.884  0.073       0.948               -0.040

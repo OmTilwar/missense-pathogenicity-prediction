@@ -1,0 +1,135 @@
+[
+  {
+    "key": "01_Richards2015_ACMG",
+    "title": "Standards and guidelines for the interpretation of sequence variants: a joint consensus recommendation of the American College of Medical Genetics and Genomics and the Association for Molecular Pathology.",
+    "journal": null,
+    "year": "2015",
+    "doi": "10.1038/gim.2015.30",
+    "pmid": "25741868",
+    "pmcid": "PMC4544753",
+    "source": "MED",
+    "status": "metadata only (not open access - get via institute library)"
+  },
+  {
+    "key": "02_Grimm2015_circularity",
+    "title": "The evaluation of tools used to predict the impact of missense variants is hindered by two types of circularity.",
+    "journal": null,
+    "year": "2015",
+    "doi": "10.1002/humu.22768",
+    "pmid": "25684150",
+    "pmcid": "PMC4409520",
+    "source": "MED",
+    "status": "metadata only (not open access - get via institute library)"
+  },
+  {
+    "key": "03_Ioannidis2016_REVEL",
+    "title": "REVEL: An Ensemble Method for Predicting the Pathogenicity of Rare Missense Variants.",
+    "journal": null,
+    "year": "2016",
+    "doi": "10.1016/j.ajhg.2016.08.016",
+    "pmid": "27666373",
+    "pmcid": "PMC5065685",
+    "source": "MED",
+    "status": "metadata only (not open access - get via institute library)"
+  },
+  {
+    "key": "04_Rentzsch2019_CADD",
+    "title": "CADD: predicting the deleteriousness of variants throughout the human genome.",
+    "journal": null,
+    "year": "2019",
+    "doi": "10.1093/nar/gky1016",
+    "pmid": "30371827",
+    "pmcid": "PMC6323892",
+    "source": "MED",
+    "status": "metadata only (not open access - get via institute library)"
+  },
+  {
+    "key": "05_Pejaver2022_calibration",
+    "title": "Calibration of computational tools for missense variant pathogenicity classification and ClinGen recommendations for PP3/BP4 criteria.",
+    "journal": null,
+    "year": "2022",
+    "doi": "10.1016/j.ajhg.2022.10.013",
+    "pmid": "36413997",
+    "pmcid": "PMC9748256",
+    "source": "MED",
+    "status": "metadata only (not open access - get via institute library)"
+  },
+  {
+    "key": "06_Cheng2023_AlphaMissense",
+    "title": "Accurate proteome-wide missense variant effect prediction with AlphaMissense.",
+    "journal": null,
+    "year": "2023",
+    "doi": "10.1126/science.adg7492",
+    "pmid": "37733863",
+    "pmcid": null,
+    "source": "MED",
+    "status": "metadata only (not open access - get via institute library)"
+  },
+  {
+    "key": "07_Brandes2023_ESM1b",
+    "title": "Genome-wide prediction of disease variant effects with a deep protein language model.",
+    "journal": null,
+    "year": "2023",
+    "doi": "10.1038/s41588-023-01465-0",
+    "pmid": "37563329",
+    "pmcid": "PMC10484790",
+    "source": "MED",
+    "status": "metadata only (not open access - get via institute library)"
+  },
+  {
+    "key": "08_Lin2023_ESM2",
+    "title": "Evolutionary-scale prediction of atomic-level protein structure with a language model.",
+    "journal": null,
+    "year": "2023",
+    "doi": "10.1126/science.ade2574",
+    "pmid": "36927031",
+    "pmcid": null,
+    "source": "MED",
+    "status": "metadata only (not open access - get via institute library)"
+  },
+  {
+    "key": "09_Bergquist2025_calibration",
+    "title": "Calibration of additional computational tools expands ClinGen recommendation options for variant classification with PP3/BP4 criteria.",
+    "journal": null,
+    "year": "2025",
+    "doi": "10.1016/j.gim.2025.101402",
+    "pmid": "40084623",
+    "pmcid": "PMC12208618",
+    "source": "MED",
+    "status": "metadata only (not open access - get via institute library)"
+  },
+  {
+    "key": "10_Livesey2023_DMS_benchmark",
+    "title": "Updated benchmarking of variant effect predictors using deep mutational scanning.",
+    "journal": null,
+    "year": "2023",
+    "doi": "10.15252/msb.202211474",
+    "pmid": "37310135",
+    "pmcid": "PMC10407742",
+    "source": "MED",
+    "status": "metadata only (not open access - get via institute library)"
+  },
+  {
+    "key": "11_Meier2021_ESM1v",
+    "title": "Language models enable zero-shot prediction of the effects of mutations on protein function",
+    "journal": "bioRxiv",
+    "year": "2021",
+    "doi": "10.1101/2021.07.09.450648",
+    "pmid": null,
+    "pmcid": null,
+    "source": "PPR",
+    "status": "downloaded",
+    "pdf_url": "https://www.biorxiv.org/content/biorxiv/early/2021/11/17/2021.07.09.450648.full.pdf"
+  },
+  {
+    "key": "12_Lundberg2020_TreeSHAP",
+    "title": "From Local Explanations to Global Understanding with Explainable AI for Trees.",
+    "journal": null,
+    "year": "2020",
+    "doi": "10.1038/s42256-019-0138-9",
+    "pmid": "32607472",
+    "pmcid": "PMC7326367",
+    "source": "MED",
+    "status": "metadata only (not open access - get via institute library)"
+  }
+]

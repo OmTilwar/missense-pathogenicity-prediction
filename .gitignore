@@ -1,0 +1,10 @@
+# large / regenerable (see README "Reproduce")
+data/
+models/
+# third-party papers: copyrighted full texts, not redistributed (see papers/index.json for sources)
+papers/*.pdf
+papers/*.txt
+# local
+.idea/
+__pycache__/
+*.pyc

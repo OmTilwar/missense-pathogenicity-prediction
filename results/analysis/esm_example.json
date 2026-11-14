@@ -1,0 +1,84 @@
+{
+ "protein": "TP53 (UniProt P04637)",
+ "length": 393,
+ "sequence_first_60": "MEEPQSDPSVEPPLSQETFSDLWKLLPENNVLSPLPSQAMDDLMLSPDDIEQWFTEDPGP",
+ "window_around_175": "QSQHMTEVVRRCPHHERCSDSD",
+ "residue_175": "R",
+ "token_ids_first_12": [
+  0,
+  20,
+  9,
+  9,
+  14,
+  16,
+  8,
+  13,
+  14,
+  8,
+  7,
+  9
+ ],
+ "tokens_first_12": [
+  "<cls>",
+  "M",
+  "E",
+  "E",
+  "P",
+  "Q",
+  "S",
+  "D",
+  "P",
+  "S",
+  "V",
+  "E"
+ ],
+ "n_tokens": 395,
+ "logits_shape": [
+  1,
+  395,
+  33
+ ],
+ "hidden_shape": [
+  1,
+  395,
+  1280
+ ],
+ "top5_at_175": [
+  [
+   "R",
+   0.9992
+  ],
+  [
+   "K",
+   0.0003
+  ],
+  [
+   "C",
+   0.0001
+  ],
+  [
+   "H",
+   0.0001
+  ],
+  [
+   "Q",
+   0.0001
+  ]
+ ],
+ "p_R": 0.99916,
+ "p_H": 0.000108,
+ "logp_R": -0.001,
+ "logp_H": -9.13,
+ "llr_R175H": -9.129,
+ "entropy_175": 0.0086,
+ "embedding_first5_at_175": [
+  0.2269,
+  0.0781,
+  0.0983,
+  -0.093,
+  -0.4438
+ ],
+ "most_tolerant_position": 53,
+ "most_tolerant_residue": "W",
+ "most_tolerant_entropy": 2.633
+}
