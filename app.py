@@ -152,6 +152,8 @@ def score(hgvs, gene, protein, stem):
     expl = pd.DataFrame({"feature": bundle["names"], "value": X[0], "shap": sv})
     expl["label"] = expl.feature.map(friendly)
     expl["group"] = expl.feature.map(lambda f: group_of(f, bundle.get("groups") or {}))
+    print(f"[SCORE] model={stem} raw={raw:.4f} calibrated={p:.4f} feats_missing={int(np.isnan(X).sum())}/{X.size}",
+          flush=True)
     return {"p": p, "raw": raw, "d": d, "expl": expl, "log": log.getvalue().strip()}
 
 
