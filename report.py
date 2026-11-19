@@ -361,8 +361,9 @@ td.barcell {{ position:relative; width:40%; }} .axis {{ position:absolute; left:
 
 
 _PDF_SNIPPET = "import sys, weasyprint; sys.stdout.buffer.write(weasyprint.HTML(string=sys.stdin.read()).write_pdf())"
-PDF_HINT = ("PDF export needs WeasyPrint and its system libraries: `pip install weasyprint` and, on macOS, "
-            "`brew install pango` (Linux: install pango via your package manager).")
+PDF_HINT = ("PDF export needs WeasyPrint and the pango library: `pip install weasyprint`, then "
+            "macOS: `brew install pango`; Linux: `sudo apt install libpango-1.0-0 libpangoft2-1.0-0`; "
+            "Windows: install MSYS2 and run `pacman -S mingw-w64-ucrt-x86_64-pango` in its UCRT64 shell.")
 
 
 def html_to_pdf(html_text, timeout=120):

@@ -1,5 +1,15 @@
 # Python 3.11. Install with:  pip install -r requirements.txt
-# macOS also needs:  brew install libomp   (XGBoost)   and   brew install pango   (PDF reports)
+# All packages ship ready-made wheels for Windows, Linux and macOS (checked for Python 3.11).
+#
+# Windows:
+#   - GPU (NVIDIA): install the CUDA build of PyTorch FIRST, using the command from
+#     https://pytorch.org/get-started/locally/ (the plain PyPI torch on Windows is CPU-only)
+#   - If XGBoost reports a missing DLL (vcomp140.dll), install the
+#     Microsoft Visual C++ Redistributable (x64)
+#   - PDF reports (optional): install MSYS2 (https://www.msys2.org), then in the MSYS2 UCRT64
+#     shell run:  pacman -S mingw-w64-ucrt-x86_64-pango   (WeasyPrint finds C:\msys64\ucrt64\bin)
+# macOS:   brew install libomp   (XGBoost)   and   brew install pango   (PDF reports)
+# Linux:   sudo apt install libpango-1.0-0 libpangoft2-1.0-0   (PDF reports)
 
 # --- pipeline and prediction (src/) ---
 pandas>=2.2
