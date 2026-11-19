@@ -286,10 +286,22 @@ if "result" in st.session_state:
            "group_names": GROUP_NAMES}
     html_report, md_report = report.build_report(run)
     fname = f"variant_report_{d.gene[0]}_{d.aa_ref[0]}{d.aa_pos[0]}{d.aa_alt[0]}_{res['run_id']}"
-    b1, b2, _ = st.columns([1, 1, 2])
-    b1.download_button("⬇️ Download HTML (print to PDF)", html_report, f"{fname}.html", "text/html",
+    pdf_key = f"pdf_{res['run_id']}"
+    if pdf_key not in st.session_state:
+        with st.spinner("Rendering PDF…"):
+            st.session_state[pdf_key] = report.html_to_pdf(html_report)
+    pdf_report = st.session_state[pdf_key]
+    b0, b1, b2 = st.columns(3)
+    if pdf_report:
+        b0.download_button("⬇️ Download PDF", pdf_report, f"{fname}.pdf", "application/pdf",
+                           type="primary", use_container_width=True)
+    else:
+        b0.button("⬇️ Download PDF", disabled=True, use_container_width=True, help=report.PDF_HINT)
+    b1.download_button("⬇️ Download HTML", html_report, f"{fname}.html", "text/html",
                        use_container_width=True)
     b2.download_button("⬇️ Download Markdown", md_report, f"{fname}.md", "text/markdown",
                        use_container_width=True)
+    if not pdf_report:
+        st.caption(report.PDF_HINT)
     with st.expander("Preview report", expanded=True):
         components.html(html_report, height=900, scrolling=True)

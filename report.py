@@ -66,6 +66,10 @@ def _sha256(path):
     return h.hexdigest()
 
 
+def _fmt_p(p):
+    return "<0.001" if p < 0.001 else ">0.999" if p > 0.999 else f"{p:.3f}"
+
+
 # ----------------------------------------------------------------------------- rule-based findings
 def findings(d):
     """List of (category, direction, sentence). direction: 'path', 'benign' or 'neutral'."""
@@ -158,7 +162,7 @@ def _summary(p, level, gene, change):
             "supports a benign effect" if level.startswith("BP4") else
             "falls in the indeterminate range and should not be used as evidence either way")
     strength = level.split("_", 1)[1].lower() if "_" in level else ""
-    s = f"The model gives {gene} p.{change} a calibrated pathogenicity probability of {p:.3f}. "
+    s = f"The model gives {gene} p.{change} a calibrated pathogenicity probability of {_fmt_p(p)}. "
     if strength:
         s += f"This {side} at **{strength}** strength ({level.replace('_', ' ')})."
     else:
@@ -212,7 +216,7 @@ def _markdown(run, gene, change, summary, facts, top, groups, meta, th, bl):
          f"`{run['hgvs']}` · run `{run['run_id']}` · {meta['Generated']}", "",
          f"> {DISCLAIMER}", "", "## Result", "",
          f"| Calibrated P(pathogenic) | Computational evidence | Model |", "|---|---|---|",
-         f"| **{run['p']:.3f}** | **{run['level'].replace('_', ' ')}** | `{run['model']}` |", "",
+         f"| **{_fmt_p(run['p'])}** | **{run['level'].replace('_', ' ')}** | `{run['model']}` |", "",
          summary.replace("**", "**"), ""]
     if run.get("log"):
         L += [f"**Warning during scoring:** {run['log']}", ""]
@@ -304,9 +308,9 @@ h1 {{ font-size:24px; margin:0 0 4px; }} h2 {{ font-size:16px; margin:28px 0 10p
 .card {{ border:1px solid var(--line); border-radius:10px; padding:12px; background:var(--soft); }}
 .card .k {{ color:var(--muted); font-size:12px; }} .card .v {{ font-size:22px; font-weight:700; }}
 .v.path {{ color:var(--path); }} .v.benign {{ color:var(--benign); }} .v.neutral {{ color:var(--muted); }}
-.scale {{ position:relative; height:14px; border-radius:7px; overflow:hidden; margin:18px 0 4px; background:#eee; }}
+.scale {{ position:relative; height:14px; border-radius:7px; overflow:hidden; margin:0 0 4px; background:#eee; }}
 .scale div {{ position:absolute; top:0; bottom:0; }}
-.mk {{ position:relative; height:0; }} .mk span {{ position:absolute; top:-26px; transform:translateX(-50%); font-size:18px; }}
+.mk {{ position:relative; height:18px; margin-top:14px; }} .mk span {{ position:absolute; top:0; transform:translateX(-50%); font-size:16px; line-height:18px; }}
 .ticks {{ display:flex; justify-content:space-between; color:var(--muted); font-size:11px; }}
 ul.facts {{ list-style:none; padding:0; margin:0; }} ul.facts li {{ padding:6px 10px; border-left:4px solid var(--line); margin:6px 0; background:var(--soft); }}
 ul.facts li.path {{ border-color:var(--path); }} ul.facts li.benign {{ border-color:var(--benign); }}
@@ -319,7 +323,10 @@ td.barcell {{ position:relative; width:40%; }} .axis {{ position:absolute; left:
 .bar {{ position:absolute; top:8px; height:12px; border-radius:2px; }} .bar.pos {{ background:var(--path); }} .bar.neg {{ background:var(--benign); }}
 .small {{ font-size:12px; color:var(--muted); }}
 @media (max-width:640px) {{ .cards {{ grid-template-columns:1fr; }} th {{ width:auto; }} }}
-@media print {{ body {{ padding:0; }} h2 {{ break-after:avoid; }} table, ul.facts li {{ break-inside:avoid; }} }}
+@page {{ size:A4; margin:16mm 14mm 18mm;
+         @bottom-left {{ content:"{e(gene)} p.{e(change)} · run {e(run['run_id'])} · research use only"; font-size:9px; color:#6b7280; }}
+         @bottom-right {{ content:"Page " counter(page) " of " counter(pages); font-size:9px; color:#6b7280; }} }}
+@media print {{ body {{ padding:0; max-width:none; }} h2 {{ break-after:avoid; }} table, ul.facts li {{ break-inside:avoid; }} }}
 </style></head><body>
 <h1>Variant report: {e(gene)} p.{e(change)}</h1>
 <div class="sub"><code>{e(run['hgvs'])}</code> · run <code>{e(run['run_id'])}</code> · {e(meta['Generated'])}</div>
@@ -327,12 +334,12 @@ td.barcell {{ position:relative; width:40%; }} .axis {{ position:absolute; left:
 {warn}
 <h2>Result</h2>
 <div class="cards">
-  <div class="card"><div class="k">Calibrated P(pathogenic)</div><div class="v {tone}">{p:.3f}</div></div>
+  <div class="card"><div class="k">Calibrated P(pathogenic)</div><div class="v {tone}">{_fmt_p(p)}</div></div>
   <div class="card"><div class="k">Computational evidence</div><div class="v {tone}">{e(level.replace('_', ' '))}</div></div>
   <div class="card"><div class="k">Model</div><div style="font-weight:600;margin-top:6px">{e(run['model'])}</div></div>
 </div>
-<div class="scale">{band}</div>
 <div class="mk"><span style="left:{marker}">▼</span></div>
+<div class="scale">{band}</div>
 <div class="ticks"><span>0 · benign (BP4)</span><span>indeterminate</span><span>pathogenic (PP3) · 1</span></div>
 <p>{summary_html}</p>
 <h2>Key evidence</h2>
@@ -351,6 +358,32 @@ td.barcell {{ position:relative; width:40%; }} .axis {{ position:absolute; left:
 <table>{meta_rows}</table>
 </body></html>
 """
+
+
+_PDF_SNIPPET = "import sys, weasyprint; sys.stdout.buffer.write(weasyprint.HTML(string=sys.stdin.read()).write_pdf())"
+PDF_HINT = ("PDF export needs WeasyPrint and its system libraries: `pip install weasyprint` and, on macOS, "
+            "`brew install pango` (Linux: install pango via your package manager).")
+
+
+def html_to_pdf(html_text, timeout=120):
+    """Render the HTML report to PDF bytes with WeasyPrint, or return None if it is unavailable.
+
+    Runs in a child process so the native library path can be set for it: on macOS, Homebrew's
+    pango/glib live in /opt/homebrew/lib (or /usr/local/lib), which Python's dlopen does not search
+    unless DYLD_FALLBACK_LIBRARY_PATH is set before the process starts."""
+    import os
+    import subprocess
+    import sys
+    env = dict(os.environ)
+    if sys.platform == "darwin":
+        extra = [p for p in ("/opt/homebrew/lib", "/usr/local/lib") if os.path.isdir(p)]
+        env["DYLD_FALLBACK_LIBRARY_PATH"] = ":".join(extra + [env.get("DYLD_FALLBACK_LIBRARY_PATH", "")]).strip(":")
+    try:
+        r = subprocess.run([sys.executable, "-c", _PDF_SNIPPET], input=html_text.encode(), capture_output=True,
+                           env=env, timeout=timeout)
+    except (OSError, subprocess.TimeoutExpired):
+        return None
+    return r.stdout if r.returncode == 0 and r.stdout.startswith(b"%PDF") else None
 
 
 def new_run_id(hgvs, model, t):
