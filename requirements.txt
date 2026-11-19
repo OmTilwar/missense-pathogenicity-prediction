@@ -1,0 +1,21 @@
+# Python 3.11. Install with:  pip install -r requirements.txt
+# macOS also needs:  brew install libomp   (XGBoost)   and   brew install pango   (PDF reports)
+
+# --- pipeline and prediction (src/) ---
+pandas>=2.2
+numpy>=1.26
+pyarrow>=15.0
+scikit-learn==1.8.0        # pinned: the saved .joblib models were created with 1.8.0
+xgboost>=2.1
+shap>=0.46
+torch>=2.3                 # on a GPU machine, install the CUDA build from pytorch.org first
+transformers>=4.44         # ESM-2 (facebook/esm2_t33_650M_UR50D)
+biopython>=1.83
+matplotlib>=3.8
+requests>=2.31
+joblib>=1.4
+
+# --- web app (app.py, report.py) ---
+streamlit>=1.40
+plotly>=5.22
+weasyprint>=62             # optional: one-click PDF report; needs the pango system library

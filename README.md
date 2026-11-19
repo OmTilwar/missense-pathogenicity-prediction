@@ -19,7 +19,7 @@ results/          tables/, figures/, trained model, REPORT.md
 
 ## Reproduce
 ```bash
-pip install pandas pyarrow scikit-learn xgboost shap torch transformers biopython matplotlib requests joblib
+pip install -r requirements.txt   # Python 3.11; on macOS also: brew install libomp pango
 # raw downloads (ClinVar + UniProt) – see PLAN.md Phase 1 for URLs
 python src/01_build_clinvar.py           # labels from ClinVar 2023-01 and 2026-09
 python src/02_annotate_myvariant.py      # gnomAD + dbNSFP features via MyVariant.info (resumable)
