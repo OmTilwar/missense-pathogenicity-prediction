@@ -17,9 +17,17 @@ src/              pipeline (run in order)
 results/          tables/, figures/, trained model, REPORT.md
 ```
 
+## Run the web app
+```bash
+pip install -r requirements.txt
+streamlit run app.py                 # opens http://localhost:8501
+```
+Windows with an NVIDIA GPU: install the CUDA build of PyTorch from pytorch.org before the line above.
+The PDF report button needs the pango library (see requirements.txt); without it, HTML and Markdown reports still work.
+
 ## Reproduce
 ```bash
-pip install pandas pyarrow scikit-learn xgboost shap torch transformers biopython matplotlib requests joblib
+pip install -r requirements.txt   # Python 3.11; see requirements.txt for Windows/macOS/Linux notes
 # raw downloads (ClinVar + UniProt) – see PLAN.md Phase 1 for URLs
 python src/01_build_clinvar.py           # labels from ClinVar 2023-01 and 2026-09
 python src/02_annotate_myvariant.py      # gnomAD + dbNSFP features via MyVariant.info (resumable)
