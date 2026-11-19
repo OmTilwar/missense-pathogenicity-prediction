@@ -102,7 +102,7 @@ BASELINES = {"bl_revel": "REVEL", "bl_alphamissense": "AlphaMissense", "bl_cadd"
              "bl_esm1b": "ESM1b (−LLR)", "bl_primateai": "PrimateAI"}
 EXAMPLES = {
     "TP53 p.R175H (known pathogenic)": ("chr17:g.7675088C>T", "TP53", "R175H"),
-    "BRCA1 p.P871L (common, benign)": ("chr17:g.43093449G>A", "BRCA1", "P871L"),
+    "BRCA1 p.P871L (common, benign)": ("chr17:g.43092919G>A", "BRCA1", "P871L"),
 }
 
 
