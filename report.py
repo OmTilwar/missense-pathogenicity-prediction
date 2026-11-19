@@ -360,10 +360,13 @@ td.barcell {{ position:relative; width:40%; }} .axis {{ position:absolute; left:
 """
 
 
-_PDF_SNIPPET = "import sys, weasyprint; sys.stdout.buffer.write(weasyprint.HTML(string=sys.stdin.read()).write_pdf())"
+# stdin is decoded as UTF-8 explicitly: on Windows a piped stdin uses the locale codec (cp1252),
+# which turns the report's · and ▼ characters into surrogates and crashes WeasyPrint's layout.
+_PDF_SNIPPET = ("import sys, weasyprint; sys.stdin.reconfigure(encoding='utf-8'); "
+                "sys.stdout.buffer.write(weasyprint.HTML(string=sys.stdin.read()).write_pdf())")
 PDF_HINT = ("PDF export needs WeasyPrint and the pango library: `pip install weasyprint`, then "
             "macOS: `brew install pango`; Linux: `sudo apt install libpango-1.0-0 libpangoft2-1.0-0`; "
-            "Windows: install MSYS2 and run `pacman -S mingw-w64-ucrt-x86_64-pango` in its UCRT64 shell.")
+            "Windows: install the GTK3 runtime, e.g. `winget install tschoonj.GTKForWindows`.")
 
 
 def html_to_pdf(html_text, timeout=120):
@@ -371,7 +374,8 @@ def html_to_pdf(html_text, timeout=120):
 
     Runs in a child process so the native library path can be set for it: on macOS, Homebrew's
     pango/glib live in /opt/homebrew/lib (or /usr/local/lib), which Python's dlopen does not search
-    unless DYLD_FALLBACK_LIBRARY_PATH is set before the process starts."""
+    unless DYLD_FALLBACK_LIBRARY_PATH is set before the process starts. On Windows, the GTK3 runtime
+    installer's bin directory must be on PATH for cffi to find libgobject/pango."""
     import os
     import subprocess
     import sys
@@ -379,6 +383,12 @@ def html_to_pdf(html_text, timeout=120):
     if sys.platform == "darwin":
         extra = [p for p in ("/opt/homebrew/lib", "/usr/local/lib") if os.path.isdir(p)]
         env["DYLD_FALLBACK_LIBRARY_PATH"] = ":".join(extra + [env.get("DYLD_FALLBACK_LIBRARY_PATH", "")]).strip(":")
+    elif sys.platform == "win32":
+        program_files = os.environ.get("ProgramFiles", r"C:\Program Files")
+        extra = [str(p) for p in (Path(program_files) / "GTK3-Runtime Win64" / "bin",
+                                  Path(program_files) / "GTK2-Runtime Win64" / "bin") if p.is_dir()]
+        if extra:
+            env["PATH"] = os.pathsep.join(extra + [env.get("PATH", "")])
     try:
         r = subprocess.run([sys.executable, "-c", _PDF_SNIPPET], input=html_text.encode(), capture_output=True,
                            env=env, timeout=timeout)
